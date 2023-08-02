@@ -9,3 +9,24 @@
     padding: 1rem 0;
     border-bottom: 1px solid;
 }
+.tasklist{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+}
+.taskinfo{
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 2px solid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.task_button{
+    display: flex;
+    gap: 1rem;
+}
+.task_button button{
+    padding: 1rem 2rem;
+    cursor: pointer;
+}
