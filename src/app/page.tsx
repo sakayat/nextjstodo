@@ -13,6 +13,7 @@ interface Todo {
 const HomePage: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [content, setContent] = useState<string>("");
+  const [index, setIndex] = useState<number>(-1);
 
   useEffect(() => {
     fetchData();
@@ -40,6 +41,12 @@ const HomePage: React.FC = () => {
     }
   };
 
+  // editTodo
+  const handleEdit = (todo: any) => {
+    setContent(todo.content);
+    setIndex(todo._id);
+  }
+
   return (
     <div className={style.wrapper}>
       <h1 className={style.title}>Todo App</h1>
@@ -49,7 +56,7 @@ const HomePage: React.FC = () => {
           content={content}
           setContent={setContent}
         />
-        <TaskList todos={todos} />
+        <TaskList todos={todos} handleEdit={handleEdit}/>
       </div>
     </div>
   );
