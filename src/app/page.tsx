@@ -36,6 +36,7 @@ const HomePage: React.FC = () => {
         content,
       });
       setTodos([...todos, res.data]);
+      setContent("")
     } catch (error) {
       console.log("Failed to post data", error);
     }
@@ -58,6 +59,8 @@ const HomePage: React.FC = () => {
         return todo;
       });
       setTodos(updateTodo);
+      setContent("")
+      setIndex(-1)
     } catch (error) {
       console.log("Failed to updated data", error);
     }
