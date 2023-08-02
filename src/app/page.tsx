@@ -47,14 +47,32 @@ const HomePage: React.FC = () => {
     setIndex(todo._id);
   }
 
+  // addUpdate
+  const handleUpdateTodo = async () => {
+    try {
+      await axios.put(`/api/todos/${index}`, { content });
+      const updateTodo = todos.map((todo) => {
+        if (todo._id === index) {
+          return { ...todo, content };
+        }
+        return todo;
+      });
+      setTodos(updateTodo);
+    } catch (error) {
+      console.log("Failed to updated data", error);
+    }
+  }
+
   return (
     <div className={style.wrapper}>
       <h1 className={style.title}>Todo App</h1>
       <div>
         <TaskForm
           handleAddTodo={handleAddTodo}
+          handleUpdateTodo={handleUpdateTodo}
           content={content}
           setContent={setContent}
+          index={index}
         />
         <TaskList todos={todos} handleEdit={handleEdit}/>
       </div>

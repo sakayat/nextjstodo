@@ -2,11 +2,19 @@ import style from "@/app/page.module.scss";
 
 interface Props {
   handleAddTodo: () => void;
+  handleUpdateTodo: () => void;
   content: string;
   setContent: React.Dispatch<React.SetStateAction<string>>;
+  index: number;
 }
 
-const TaskForm: React.FC<Props> = ({ handleAddTodo, content, setContent }) => {
+const TaskForm: React.FC<Props> = ({
+  handleAddTodo,
+  handleUpdateTodo,
+  content,
+  setContent,
+  index,
+}) => {
   return (
     <div className={style.task_form}>
       <div className={style.form_item}>
@@ -16,7 +24,11 @@ const TaskForm: React.FC<Props> = ({ handleAddTodo, content, setContent }) => {
           type="text"
           placeholder="Enter a todo..."
         />
-        <button onClick={handleAddTodo}>Add Task</button>
+        {index === -1 ? (
+          <button onClick={handleAddTodo}>Add</button>
+        ) : (
+          <button onClick={handleUpdateTodo}>Update</button>
+        )}
       </div>
     </div>
   );
