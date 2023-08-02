@@ -1,9 +1,9 @@
-
+import style from "@/app/page.module.scss";
 
 export default function Home() {
   return (
-    <>
-    <h1>Welcome to nextjs</h1>
-    </>
-  )
+    <div className={style.wrapper}>
+      <h1 className={style.title}>Todo App</h1>
+    </div>
+  );
 }
