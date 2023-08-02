@@ -1,32 +1,62 @@
-.wrapper{
-    max-width: 80rem;
-    margin: 0 auto;
-    padding: 0 5rem;
-    margin: 3rem 0;
+.wrapper {
+  max-width: 80rem;
+  margin: 3rem auto;
+  padding: 0 5rem;
 }
-.title{
-    text-align: center;
-    padding: 1rem 0;
-    border-bottom: 1px solid;
+.title {
+  text-align: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid;
 }
-.tasklist{
-    display: flex;
+.task_form {
+  margin-top: 1rem;
+}
+.form_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.form_item input {
+  width: 100%;
+  padding: 1rem 2rem;
+}
+.form_item button {
+  width: 10rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
+.tasklist {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+}
+.taskinfo {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.task_button {
+  display: flex;
+  gap: 1rem;
+}
+.task_button button {
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 992px) {
+  .wrapper {
+    padding: 0 2rem;
+  }
+  .taskinfo {
     flex-direction: column;
-    padding: 2rem 0;
-}
-.taskinfo{
-    margin: 1rem 0;
-    padding: 1rem;
-    border: 2px solid;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.task_button{
-    display: flex;
+    align-items: start;
     gap: 1rem;
-}
-.task_button button{
-    padding: 1rem 2rem;
-    cursor: pointer;
+  }
 }
