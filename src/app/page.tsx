@@ -66,6 +66,17 @@ const HomePage: React.FC = () => {
     }
   }
 
+  // addDelete
+  const handleDelete = async (id: number) => {
+    try {
+      await axios.delete(`/api/todos/${id}`);
+      const removeTodo = todos.filter((todo) => todo._id !== id);
+      setTodos(removeTodo);
+    } catch (error) {
+      console.log("Failed to delete data", error);
+    }
+  }
+
   return (
     <div className={style.wrapper}>
       <h1 className={style.title}>Todo App</h1>
@@ -77,7 +88,7 @@ const HomePage: React.FC = () => {
           setContent={setContent}
           index={index}
         />
-        <TaskList todos={todos} handleEdit={handleEdit}/>
+        <TaskList todos={todos} handleEdit={handleEdit} handleDelete={handleDelete}/>
       </div>
     </div>
   );

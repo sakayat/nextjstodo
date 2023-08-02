@@ -3,9 +3,10 @@ import style from "@/app/page.module.scss";
 interface TodoList {
   todos: Todo[];
   handleEdit: (arg: any) => void
+  handleDelete: (arg: number) => void
 }
 
-const TaskList: React.FC<TodoList> = ({ todos, handleEdit }) => {
+const TaskList: React.FC<TodoList> = ({ todos, handleEdit, handleDelete }) => {
   return (
     <div className={style.tasklist}>
       <h4>Task List</h4>
@@ -14,7 +15,7 @@ const TaskList: React.FC<TodoList> = ({ todos, handleEdit }) => {
           <span>{todo.content}</span>
           <div className={style.task_button}>
             <button onClick={() => handleEdit(todo)}>Edit Task</button>
-            <button>Delete Task</button>
+            <button onClick={() => handleDelete(todo._id)}>Delete Task</button>
           </div>
         </div>
       ))}
