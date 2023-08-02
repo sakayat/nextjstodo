@@ -13,3 +13,15 @@ export const PUT = async (req: Request, { params }: { params: any }) => {
       return NextResponse.json("Internal Server Error", { status: 404 });
     }
   };
+
+  export const DELETE = async (req: Request, { params }: { params: any }) => {
+    await connectDB()
+    const { id } = params;
+    try {
+      const removeTodo = await Todo.findByIdAndDelete(id);
+      return NextResponse.json(removeTodo);
+    } catch (error) {
+      return NextResponse.json("Internal Server Error", { status: 404 });
+    }
+  };
+  
