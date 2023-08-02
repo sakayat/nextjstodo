@@ -11,14 +11,3 @@ export const GET = async (req: Request, res: Response) => {
        return NextResponse.json("Internal Server Error", {status: 404})
     }
 }
-
-export const POST = async (req: Request, res: Response) => {
-    await connectDB()
-    try{
-        const body = await req.json()
-        const todo = await Todo.create(body)
-        return NextResponse.json(todo)
-    } catch(error){
-       return NextResponse.json("Internal Server Error", {status: 404})
-    }
-}
