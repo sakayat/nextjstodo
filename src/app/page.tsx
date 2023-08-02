@@ -12,6 +12,7 @@ interface Todo {
 
 const HomePage: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [content, setContent] = useState<string>("");
 
   useEffect(() => {
     fetchData();
@@ -19,15 +20,35 @@ const HomePage: React.FC = () => {
 
   // fetchData
   const fetchData = async () => {
-    const res = await axios.get("/api/todos");
-    setTodos(res.data);
+    try {
+      const res = await axios.get("/api/todos");
+      setTodos(res.data);
+    } catch (error) {
+      console.log("Failed to fetch data", error);
+    }
+  };
+
+  // addTodo
+  const handleAddTodo = async () => {
+    try {
+      const res = await axios.post("/api/todos", {
+        content,
+      });
+      setTodos([...todos, res.data]);
+    } catch (error) {
+      console.log("Failed to post data", error);
+    }
   };
 
   return (
     <div className={style.wrapper}>
       <h1 className={style.title}>Todo App</h1>
       <div>
-        <TaskForm />
+        <TaskForm
+          handleAddTodo={handleAddTodo}
+          content={content}
+          setContent={setContent}
+        />
         <TaskList todos={todos} />
       </div>
     </div>

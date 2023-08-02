@@ -1,12 +1,23 @@
 import style from "@/app/page.module.scss";
 
-const TaskForm = () => {
+interface Props {
+  handleAddTodo: () => void;
+  content: string;
+  setContent: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const TaskForm: React.FC<Props> = ({ handleAddTodo, content, setContent }) => {
   return (
     <div className={style.task_form}>
-      <form className={style.form_item}>
-        <input type="text" placeholder="Enter a todo..." />
-        <button>Add Task</button>
-      </form>
+      <div className={style.form_item}>
+        <input
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          type="text"
+          placeholder="Enter a todo..."
+        />
+        <button onClick={handleAddTodo}>Add Task</button>
+      </div>
     </div>
   );
 };
