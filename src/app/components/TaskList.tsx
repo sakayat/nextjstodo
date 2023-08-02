@@ -1,16 +1,22 @@
 import style from "@/app/page.module.scss";
 
-const TaskList: React.FC = () => {
+interface TodoList {
+  todos: Todo[];
+}
+
+const TaskList: React.FC<TodoList> = ({ todos }) => {
   return (
     <div className={style.tasklist}>
       <h4>Task List</h4>
-      <div className={style.taskinfo}>
-        <p>Artificial Intelligence and Machine from healthcare to finance.</p>
-        <div className={style.task_button}>
-          <button>Edit Task</button>
-          <button>Delete Task</button>
+      {todos.map((todo) => (
+        <div key={todo._id} className={style.task_info}>
+          <span>{todo.content}</span>
+          <div className={style.task_button}>
+            <button>Edit Task</button>
+            <button>Delete Task</button>
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 };
