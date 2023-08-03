@@ -79,7 +79,6 @@ const HomePage: React.FC = () => {
 
   return (
     <div className={style.wrapper}>
-      <h1 className={style.title}>Todo App</h1>
       <div>
         <TaskForm
           handleAddTodo={handleAddTodo}
