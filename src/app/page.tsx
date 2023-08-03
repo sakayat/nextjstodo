@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { toast } from 'react-toastify';
-import { redirect } from 'next/navigation'
+
 
 
 type Todo = {
@@ -21,9 +21,6 @@ const HomePage: React.FC = () => {
 
   const {data: session} = useSession()
 
-  if(session){
-    redirect("/")
-  }
 
   useEffect(() => {
     fetchData();
