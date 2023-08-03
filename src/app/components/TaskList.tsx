@@ -2,11 +2,14 @@ import style from "@/app/page.module.scss";
 
 interface TodoList {
   todos: Todo[];
-  handleEdit: (arg: any) => void
-  handleDelete: (arg: number) => void
+  handleEdit: (arg: any) => void;
+  handleDelete: (arg: number) => void;
 }
 
 const TaskList: React.FC<TodoList> = ({ todos, handleEdit, handleDelete }) => {
+  if (todos.length === 0) {
+    return <p className={style.loading}>Loading...</p>;
+  }
   return (
     <div className={style.tasklist}>
       <h4>Task List</h4>

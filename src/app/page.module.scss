@@ -50,6 +50,12 @@
   cursor: pointer;
 }
 
+.loading{
+  font-size: 2rem;
+  text-align: center;
+  padding: 3rem 0;
+}
+
 @media only screen and (max-width: 992px) {
   .wrapper {
     padding: 0 2rem;
