@@ -1,10 +1,15 @@
 import style from "@/app/page.module.scss";
 
-interface TodoList {
-  todos: Todo[];
+type Todo = {
+  _id: number;
+  content: string;
+};
+
+type TodoList = {
   handleEdit: (arg: any) => void;
   handleDelete: (arg: number) => void;
-}
+  todos: Todo[];
+};
 
 const TaskList: React.FC<TodoList> = ({ todos, handleEdit, handleDelete }) => {
   if (todos.length === 0) {

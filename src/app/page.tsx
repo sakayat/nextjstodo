@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 
 
 
-interface Todo {
+type Todo = {
   _id: number;
   content: string;
 }
@@ -25,7 +25,6 @@ const HomePage: React.FC = () => {
     fetchData();
   }, []);
 
-  
 
   // fetchData
   const fetchData = async () => {
