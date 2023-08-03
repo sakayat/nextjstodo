@@ -4,6 +4,10 @@ import TaskList from "./components/TaskList";
 import TaskForm from "./components/TaskForm";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useSession } from "next-auth/react";
+import { toast } from 'react-toastify';
+
+
 
 interface Todo {
   _id: number;
@@ -15,9 +19,13 @@ const HomePage: React.FC = () => {
   const [content, setContent] = useState<string>("");
   const [index, setIndex] = useState<number>(-1);
 
+  const {data: session} = useSession()
+
   useEffect(() => {
     fetchData();
   }, []);
+
+  
 
   // fetchData
   const fetchData = async () => {
@@ -31,12 +39,16 @@ const HomePage: React.FC = () => {
 
   // addTodo
   const handleAddTodo = async () => {
+    if(!session){
+      return toast.warn("You must be login")
+    }
     try {
       const res = await axios.post("/api/todos", {
         content,
       });
       setTodos([...todos, res.data]);
       setContent("")
+      toast.success("Added Successfully")
     } catch (error) {
       console.log("Failed to post data", error);
     }
@@ -44,12 +56,18 @@ const HomePage: React.FC = () => {
 
   // editTodo
   const handleEdit = (todo: any) => {
+    if(!session){
+      return toast.warn("you must be login")
+    }
     setContent(todo.content);
     setIndex(todo._id);
   }
 
   // addUpdate
   const handleUpdateTodo = async () => {
+    if(!session){
+      return toast.warn("you must be login")
+    }
     try {
       await axios.put(`/api/todos/${index}`, { content });
       const updateTodo = todos.map((todo) => {
@@ -61,6 +79,7 @@ const HomePage: React.FC = () => {
       setTodos(updateTodo);
       setContent("")
       setIndex(-1)
+      toast.success("Updated Successfully")
     } catch (error) {
       console.log("Failed to updated data", error);
     }
@@ -68,10 +87,14 @@ const HomePage: React.FC = () => {
 
   // addDelete
   const handleDelete = async (id: number) => {
+    if(!session){
+      return toast.warn("you must be login")
+    }
     try {
       await axios.delete(`/api/todos/${id}`);
       const removeTodo = todos.filter((todo) => todo._id !== id);
       setTodos(removeTodo);
+      toast.success("Delete Successfully")
     } catch (error) {
       console.log("Failed to delete data", error);
     }

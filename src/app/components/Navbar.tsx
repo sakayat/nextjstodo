@@ -5,7 +5,6 @@ import Link from "next/link";
 
 const Navbar: React.FC = () => {
   const { data: session } = useSession();
-  console.log(session);
   return (
     <div className={style.wrapper}>
       <nav className={style.menu}>
